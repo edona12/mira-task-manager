@@ -1,0 +1,21 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE,
+  password VARCHAR NOT NULL
+);
+
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR NOT NULL,
+  description TEXT,
+  status VARCHAR DEFAULT 'pending',
+  assigned_to INT REFERENCES users(id)
+);
+
+CREATE TABLE staff (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  position VARCHAR NOT NULL,
+  email VARCHAR NOT NULL UNIQUE
+);
