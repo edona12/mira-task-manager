@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,27 +8,18 @@ const LoginForm = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  // Kontrollo nëse përdoruesi është i kyçur, ridrejto në dashboard
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      navigate('/dashboard');
-    }
-  }, [navigate]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post('http://localhost:8000/api/auth/login', {
         email,
         password,
       });
 
       const { token } = response.data;
-      localStorage.setItem('token', token); // ruaj token-in
-      setMessage('Login me sukses!');
-      setTimeout(() => navigate('/dashboard'), 1000); // redirect pas 1 sek
+      localStorage.setItem('token', token);
+      navigate('/dashboard');
     } catch (error) {
       setMessage('Gabim në login: ' + (error.response?.data?.message || error.message));
     }
@@ -36,13 +27,12 @@ const LoginForm = () => {
 
   return (
     <div className="form-container">
-      <h2>MIRA Task Manager</h2>
+      <h2>Kyçu në MIRA Task Manager</h2>
       <form onSubmit={handleSubmit} className="form-card">
         <label>Email:</label>
         <input
           type="email"
           value={email}
-          placeholder="Shkruaj email-in"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -50,7 +40,6 @@ const LoginForm = () => {
         <input
           type="password"
           value={password}
-          placeholder="Shkruaj fjalëkalimin"
           onChange={(e) => setPassword(e.target.value)}
           required
         />

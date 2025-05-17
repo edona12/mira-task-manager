@@ -1,13 +1,15 @@
-// components/LogoutButton.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 const LogoutButton = () => {
   const navigate = useNavigate();
+  const { setToken } = useContext(AuthContext);
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Fshije token-in
-    navigate('/login'); // Ridrejto te login
+    localStorage.removeItem('token');
+    setToken(null);
+    navigate('/login');
   };
 
   return (

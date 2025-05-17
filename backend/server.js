@@ -1,16 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
+const authRoutes = require('./routes/authRoutes'); // importimi në fillim
 
-const app = express();
+const app = express(); // krijohet app
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/auth', authRoutes); // përdorimi i app tani është i sigurt
 
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "mira_task_manager",
-  password: "your_password_here",
+  password: "postgres", // ndrysho nëse ke fjalëkalim tjetër
   port: 5432,
 });
 
