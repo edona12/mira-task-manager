@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+
+
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext'; // 🟣 importo kontekstin
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const { setToken } = useContext(AuthContext); // 🟣 përdor kontekstin
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +23,9 @@ const LoginForm = () => {
 
       const { token } = response.data;
       localStorage.setItem('token', token);
-      navigate('/dashboard');
+      setToken(token); // ✅ rifresko token-in në React
+      navigate('/homepage'); // ✅ drejto te HomePage
+
     } catch (error) {
       setMessage('Gabim në login: ' + (error.response?.data?.message || error.message));
     }
@@ -51,3 +57,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+

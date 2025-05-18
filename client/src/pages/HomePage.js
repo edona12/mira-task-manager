@@ -1,45 +1,26 @@
-// import React from 'react';
-// import Header from '../components/Header';
-// import { Outlet } from 'react-router-dom';
 
-// const HomePage = () => {
-//   return (
-//     <>
-//       <Header />
-//       <div className="content">
-//         <Outlet />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default HomePage;
 
 import React from 'react';
-import Header from '../components/Header';
 import { Outlet, useLocation } from 'react-router-dom';
+import Header from '../components/Header'; // <-- Shto këtë nëse nuk e ke
 
 const HomePage = () => {
   const location = useLocation();
-
-  const isBasePath = location.pathname === "/homepage";
+  const isHomeRoot = location.pathname === '/homepage';
 
   return (
-    <>
-      <Header />
-      <div className="content px-6 py-10">
-        {isBasePath ? (
-          <div className="text-center">
-            <h2 className="text-3xl font-bold">Mirë se vini në MIRA Task Manager</h2>
-            <p className="mt-4 text-lg text-gray-700">
-              Zgjidh një seksion nga menuja për të vazhduar.
-            </p>
-          </div>
-        ) : (
-          <Outlet />
-        )}
-      </div>
-    </>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-10">
+      <Header /> {/* <-- Shto këtë që të shfaqet Header-i */}
+
+      {isHomeRoot && (
+        <div className="text-center mt-24">
+          <h2 className="text-4xl font-bold mb-4">Mirësevini në MIRA Task Manager</h2>
+          <p className="text-md">Menaxhoni detyrat dhe stafin me efikasitet.</p>
+        </div>
+      )}
+
+      <Outlet />
+    </div>
   );
 };
 

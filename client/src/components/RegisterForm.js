@@ -9,11 +9,13 @@ const RegisterForm = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  // Kontrollo nëse je i kyçur dhe ridrejto në dashboard
+  // Kontrollo nëse je i kyçur 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/dashboard');
+      navigate('/homepage'); // ✅ drejt faqes Home
+
+
     }
   }, [navigate]);
 
@@ -30,7 +32,7 @@ const RegisterForm = () => {
       const { token } = response.data;
       localStorage.setItem('token', token); // ruaje token-in pas regjistrimit
       setMessage('Regjistrim me sukses!');
-      setTimeout(() => navigate('/dashboard'), 1000); // redirect pas 1 sek
+      setTimeout(() => navigate('/homepage'), 1000); // redirect pas 1 sek
     } catch (error) {
       setMessage('Gabim në regjistrim: ' + (error.response?.data?.message || error.message));
     }

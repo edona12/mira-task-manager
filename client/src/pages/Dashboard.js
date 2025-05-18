@@ -1,13 +1,12 @@
 import React from 'react';
-import LogoutButton from '../components/LogoutButton';
 
-function Dashboard() {
+const Dashboard = () => {
   return (
     <div>
-      <h2>Dashboard</h2>
-      <LogoutButton />
+      <h2>Mirësevjen në Dashboard</h2>
+      <p>Kjo është faqja kryesore pas kyçjes.</p>
     </div>
   );
-}
+};
 
 export default Dashboard;
