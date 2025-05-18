@@ -4,7 +4,7 @@ const cors = require("cors");
 const { Pool } = require("pg");
 
 const authRoutes = require('./routes/authRoutes');
-const taskRoutes = require('./routes/taskRoutes'); // shtohet edhe kjo
+// const taskRoutes = require('./routes/taskRoutes'); // shtohet edhe kjo
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/tasks', taskRoutes); // lidhja e taskRoutes
+// app.use('/api/tasks', taskRoutes); // lidhja e taskRoutes
 
 // Lidhja me databazën duke përdorur .env
 const pool = new Pool({
