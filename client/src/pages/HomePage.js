@@ -1,29 +1,46 @@
-// // src/pages/HomePage.js
 // import React from 'react';
+// import Header from '../components/Header';
+// import { Outlet } from 'react-router-dom';
 
 // const HomePage = () => {
 //   return (
-//     <div style={{ padding: '20px', maxWidth: '900px', margin: '20px auto', color: '#222' }}>
-//       <h1>Mirë se vini në MIRA Task Manager</h1>
-//       <p>Këtu mund të menaxhoni detyrat, stafit dhe të ndiqni progresin në mënyrë të thjeshtë dhe efektive.</p>
-//       {/* Mund të shtosh ketu info, slider, animacione, etj */}
-//     </div>
+//     <>
+//       <Header />
+//       <div className="content">
+//         <Outlet />
+//       </div>
+//     </>
 //   );
 // };
 
 // export default HomePage;
 
-// Homepage.js
 import React from 'react';
+import Header from '../components/Header';
+import { Outlet, useLocation } from 'react-router-dom';
 
-const Homepage = () => {
+const HomePage = () => {
+  const location = useLocation();
+
+  const isBasePath = location.pathname === "/homepage";
+
   return (
-    <div>
-      <h1>Mirësevini në Homepage</h1>
-      {/* Kodet tjera */}
-    </div>
+    <>
+      <Header />
+      <div className="content px-6 py-10">
+        {isBasePath ? (
+          <div className="text-center">
+            <h2 className="text-3xl font-bold">Mirë se vini në MIRA Task Manager</h2>
+            <p className="mt-4 text-lg text-gray-700">
+              Zgjidh një seksion nga menuja për të vazhduar.
+            </p>
+          </div>
+        ) : (
+          <Outlet />
+        )}
+      </div>
+    </>
   );
 };
 
-export default Homepage;  // **Kjo është shumë e rëndësishme**
-
+export default HomePage;
