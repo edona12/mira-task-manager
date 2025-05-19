@@ -13,7 +13,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout} className="btn-primary" style={{ marginTop: '20px' }}>
+    <button onClick={handleLogout} className="btn-primary" >
       Dil nga llogaria
     </button>
   );

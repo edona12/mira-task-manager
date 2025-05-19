@@ -37,7 +37,7 @@ function AppLayout() {
 
   return (
     <div className="App">
-      {/* Nav për Login/Register - vetëm kur nuk ka token */}
+      {/* Nav për Login/Register - vetëm kur nuk ka token      */}
       {!token && (
         <nav className="flex justify-center gap-6 pt-6 text-white text-lg font-semibold">
           <NavLink
