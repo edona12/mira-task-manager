@@ -37,7 +37,7 @@ function AppLayout() {
 
   return (
     <div className="App">
-      {/* Nav për Login/Register - vetëm kur nuk ka token      */}
+     
       {!token && (
         <nav className="flex justify-center gap-6 pt-6 text-white text-lg font-semibold">
           <NavLink
@@ -66,18 +66,6 @@ function AppLayout() {
       <Routes>
         <Route path="/login" element={!token ? <LoginForm /> : <Navigate to="/homepage" />} />
         <Route path="/register" element={!token ? <RegisterForm /> : <Navigate to="/homepage" />} />
-
-        {/* <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="tasks" element={<Tasks />} />
-          <Route path="staff" element={<Staff />} />
-        </Route> */}
-        {/* <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>} />
-<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-<Route path="/tasks" element={<PrivateRoute><Tasks /></PrivateRoute>} />
-<Route path="/staff" element={<PrivateRoute><Staff /></PrivateRoute>} /> */}
-
 
           <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
   {/* <Route index element={<Dashboard />} /> */}

@@ -13,7 +13,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-const JWT_SECRET = 'sekret_shume_i_fshet'; // ruaje në .env në projekt real
+const JWT_SECRET = 'sekret_shume_i_fshet'; 
 
 // REGISTER
 router.post('/register', async (req, res) => {
@@ -38,7 +38,6 @@ router.post('/register', async (req, res) => {
 
 });
 
-// LOGIN
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -54,10 +53,16 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token });
+
+    res.json({
+      token,
+      username: user.name 
+    });
+
   } catch (err) {
     res.status(500).json({ message: 'Gabim në server' });
   }
 });
+
 
 module.exports = router;
