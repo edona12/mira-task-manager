@@ -13,7 +13,9 @@ const pool = new Pool({
   port: 5432,
 });
 
-const JWT_SECRET = 'sekret_shume_i_fshet'; 
+require('dotenv').config(); // vendose në fillim nëse nuk është
+const JWT_SECRET = process.env.JWT_SECRET;
+
 
 // REGISTER
 router.post('/register', async (req, res) => {

@@ -1,21 +1,23 @@
+
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
 
-const authRoutes = require('./routes/authRoutes');
-// const taskRoutes = require('./routes/taskRoutes'); // shtohet edhe kjo
+const app = express(); // <- vendoset këtu lart
 
-const app = express();
+const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/tasks');
 
 app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-// app.use('/api/tasks', taskRoutes); // lidhja e taskRoutes
+app.use('/api/tasks', taskRoutes);
 
-// Lidhja me databazën duke përdorur .env
+
+// Lidhja me databazën
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
