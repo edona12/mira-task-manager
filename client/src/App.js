@@ -1,12 +1,9 @@
-
-
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  useLocation,
   NavLink,
 } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
@@ -32,31 +29,50 @@ function AppWrapper() {
 }
 
 function AppLayout() {
-  const { token } = React.useContext(AuthContext);
-  const location = useLocation();
+  const { token } = useContext(AuthContext);
+  const isAuthPage = window.location.pathname === '/login' || window.location.pathname === '/register';
 
   return (
-    <div className="App">
-     
-      {!token && (
-        <nav className="flex justify-center gap-6 pt-6 text-white text-lg font-semibold">
+    <div className="min-h-screen w-full relative">
+      {/* Nav lart në qendër vetëm për login/register */}
+      {!token && isAuthPage && (
+        <nav
+          style={{
+            position: 'absolute',
+            top: '30px',
+            left: 0,
+            right: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '30px',
+            zIndex: 10,
+          }}
+        >
           <NavLink
             to="/login"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition duration-200 ${
-                isActive ? 'bg-white text-indigo-600' : 'hover:text-indigo-300'
-              }`
-            }
+            style={({ isActive }) => ({
+              padding: '8px 16px',
+              borderRadius: '10px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              color: isActive ? '#4e54c8' : '#fff',
+              backgroundColor: isActive ? '#fff' : 'transparent',
+              transition: '0.3s',
+            })}
           >
             Login
           </NavLink>
           <NavLink
             to="/register"
-            className={({ isActive }) =>
-              `px-4 py-1 rounded-full transition duration-200 ${
-                isActive ? 'bg-white text-indigo-600' : 'hover:text-indigo-300'
-              }`
-            }
+            style={({ isActive }) => ({
+              padding: '8px 16px',
+              borderRadius: '10px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              color: isActive ? '#4e54c8' : '#fff',
+              backgroundColor: isActive ? '#fff' : 'transparent',
+              transition: '0.3s',
+            })}
           >
             Register
           </NavLink>
@@ -66,15 +82,11 @@ function AppLayout() {
       <Routes>
         <Route path="/login" element={!token ? <LoginForm /> : <Navigate to="/homepage" />} />
         <Route path="/register" element={!token ? <RegisterForm /> : <Navigate to="/homepage" />} />
-
-          <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
-  {/* <Route index element={<Dashboard />} /> */}
-  <Route path="dashboard" element={<Dashboard />} />
-  <Route path="tasks" element={<Tasks />} />
-  <Route path="staff" element={<Staff />} />
-</Route>
-
-
+        <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="tasks" element={<Tasks />} />
+          <Route path="staff" element={<Staff />} />
+        </Route>
         <Route path="*" element={<Navigate to={token ? "/homepage" : "/login"} />} />
       </Routes>
     </div>

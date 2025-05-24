@@ -1,0 +1,124 @@
+.tasks-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  color: white;
+  padding-bottom: 80px;
+}
+
+
+
+
+.tasks-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.tasks-filter {
+  display: block;
+  margin: 0 auto 2rem auto;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.tasks-table {
+  width: 100%;
+  overflow-x: auto;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+
+
+.tasks-table th,
+.tasks-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.tasks-table th {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.tasks-table tr:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.priority-badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.priority-low {
+  background-color: #facc15;
+  color: black;
+}
+
+.priority-medium {
+  background-color: #fb923c;
+  color: white;
+}
+
+.priority-high {
+  background-color: #ef4444;
+  color: white;
+}
+
+.task-form-card {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  margin-bottom: 2.5rem;
+}
+
+.task-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-form-card input,
+.task-form-card textarea,
+.task-form-card select {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 0.95rem;
+}
+
+.task-form-card input::placeholder,
+.task-form-card textarea::placeholder {
+  color: #ddd;
+}
+
+.task-form-card button {
+  padding: 10px 20px;
+  background-color: #4e54c8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.task-form-card button:hover {
+  background-color: #3c40a0;
+}

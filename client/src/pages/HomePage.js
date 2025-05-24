@@ -32,6 +32,7 @@ const HomePage = () => {
   }, []);
 
   return (
+    <div className="page-centered">
     <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-500 text-white pt-28 px-10 relative">
       <Header />
 
@@ -65,6 +66,7 @@ const HomePage = () => {
 
 
       <Outlet />
+    </div>
     </div>
   );
 };
