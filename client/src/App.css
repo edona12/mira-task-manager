@@ -281,3 +281,23 @@ body {
   text-align: center;
   padding: 2rem;
 }
+
+
+select {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  appearance: none;
+}
+select:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+option {
+  color: black;
+  background-color: white;
+}

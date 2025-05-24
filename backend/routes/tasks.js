@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../config/db'); // lidhja me PostgreSQL
-const { authenticateToken } = require('../middleware/auth'); // kontrolli i tokenit
+const pool = require('../config/db');
+const { authenticateToken } = require('../middleware/auth');
 
-// 📥 Merr të gjitha detyrat për user-in e kyçur
+//  Merr të gjitha detyrat për user-in e kyçur
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.id;
-
-    console.log("🔐 req.user.id nga token:", userId);
 
     const result = await pool.query(
       'SELECT * FROM tasks WHERE assigned_to = $1',
@@ -21,15 +19,15 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
-// ➕ Shto një detyrë të re
+// Shto një detyrë të re
 router.post('/', authenticateToken, async (req, res) => {
   const { title, description, priority, due_date } = req.body;
   const userId = req.user.id;
 
   try {
     const result = await pool.query(
-      'INSERT INTO tasks (title, description, status, priority, assigned_to, due_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [title, description, 'pending', priority, userId, due_date]
+      'INSERT INTO tasks (title, description, priority, assigned_to, due_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      [title, description, priority, userId, due_date]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -38,7 +36,7 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
-// 🗑️ Fshi një detyrë sipas ID-së
+//  Fshi një detyrë sipas ID-së
 router.delete('/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
   const userId = req.user.id;
@@ -60,7 +58,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// 🔁 Përditëso një detyrë
+// Perditeso një detyre
 router.put('/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
   const { title, description, priority, due_date } = req.body;
@@ -69,7 +67,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const result = await pool.query(
       `UPDATE tasks 
-       SET title = $1, description = $2, priority = $3, due_date = $4 
+       SET title = $1, description = $2, priority = $3, due_date = $4
        WHERE id = $5 AND assigned_to = $6 
        RETURNING *`,
       [title, description, priority, due_date, id, userId]

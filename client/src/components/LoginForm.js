@@ -41,6 +41,7 @@ const LoginForm = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+             placeholder="Shkruaj email-in"
             required
           />
           <label>Fjalëkalimi:</label>
@@ -48,6 +49,7 @@ const LoginForm = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+             placeholder="Shkruaj fjalëkalimin"
             required
           />
           <button type="submit">Kyçu</button>
