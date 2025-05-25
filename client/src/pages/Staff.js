@@ -6,8 +6,8 @@ console.log("Staff page loaded!");
 const Staff = () => {
   return (
     <div>
-      <h2>Faqja Staff</h2>
-      <p>Këtu do shfaqet lista e stafit dhe detajet për secilin.</p>
+      <h2>Staff</h2>
+      <p>Coming soon</p>
     </div>
   );
 };
