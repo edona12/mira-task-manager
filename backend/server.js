@@ -4,15 +4,21 @@ const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
 
-const app = express(); // <- vendoset këtu lart
 
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/tasks');
+const notificationRoutes = require('./routes/notifications');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB u lidh me sukses"))
+  .catch((err) => console.error("❌ Gabim në lidhje me MongoDB:", err));
+
+const app = express(); 
+app.use('/api/notifications', notificationRoutes);
 app.use(cors());
 app.use(express.json());
-
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 

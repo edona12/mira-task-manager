@@ -15,6 +15,11 @@ import HomePage from './pages/HomePage';
 import PrivateRoute from './components/PrivateRoute';
 import AuthContext from './context/AuthContext';
 import './App.css';
+import Notifications from './pages/Notifications';
+
+
+
+<Route path="/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
 
 function AppWrapper() {
   const [token, setToken] = useState(localStorage.getItem('token'));
