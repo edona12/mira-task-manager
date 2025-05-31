@@ -20,12 +20,22 @@ const LoginForm = () => {
         password,
       });
 
-      const { token, username } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('username', username);
+      // const { token, username } = response.data;
+      // localStorage.setItem('token', token);
+      // localStorage.setItem('username', username);
 
-      setToken(token);
-      navigate('/homepage');
+      // setToken(token);
+      // navigate('/homepage');
+
+      const { token, username, role } = response.data;
+localStorage.setItem('token', token);
+localStorage.setItem('username', username);
+localStorage.setItem('role', role); // ← kjo e re
+
+setToken(token);
+navigate('/homepage');
+
+
     } catch (error) {
       setMessage('Gabim në login: ' + (error.response?.data?.message || error.message));
     }

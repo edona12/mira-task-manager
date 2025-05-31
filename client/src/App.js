@@ -16,6 +16,8 @@ import PrivateRoute from './components/PrivateRoute';
 import AuthContext from './context/AuthContext';
 import './App.css';
 import Notifications from './pages/Notifications';
+import MyTasks from './pages/MyTasks';
+
 
 
 
@@ -89,8 +91,10 @@ function AppLayout() {
         <Route path="/register" element={!token ? <RegisterForm /> : <Navigate to="/homepage" />} />
         <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="mytasks" element={<MyTasks />} />
           <Route path="tasks" element={<Tasks />} />
           <Route path="staff" element={<Staff />} />
+
         </Route>
         <Route path="*" element={<Navigate to={token ? "/homepage" : "/login"} />} />
       </Routes>

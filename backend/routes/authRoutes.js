@@ -54,12 +54,18 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Fjalëkalimi është gabim' });
     }
 
-    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign(
+  { userId: user.id, role: user.role }, 
+  JWT_SECRET, 
+  { expiresIn: '1h' }
+);
 
-    res.json({
-      token,
-      username: user.name 
-    });
+res.json({
+  token,
+  username: user.name,
+  role: user.role
+});
+
 
   } catch (err) {
     res.status(500).json({ message: 'Gabim në server' });

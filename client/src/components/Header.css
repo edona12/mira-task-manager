@@ -93,10 +93,11 @@
 }
 
 /* Butoni logout */
-.logout-container {
+/* .logout-container {
   display: flex;
   align-items: center;
   padding-right: 3rem; 
+  
 }
 
 .logout-button {
@@ -116,5 +117,24 @@
   background-color: #e0e0ff;
   color: #3b3bb3;
 }
+ */
+.logout-container {
+  margin-right: 5rem; /* ose më shumë nëse do më larg nga skaji */
+}
 
+.logout-button {
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  color: white;
+  font-weight: 600;
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover {
+  transform: scale(1.05);
+}
 
