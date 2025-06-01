@@ -1,44 +1,45 @@
-# MIRA Task Manager
+    # MIRA Task Manager
 
-**MIRA Task Manager** është një aplikacion modern full-stack për menaxhimin e detyrave, ndërtuar në kuadër të kursit **Lab Course 2**.
-
-Ky projekt ofron një ndërfaqe intuitive për menaxhimin e përdoruesve, stafit dhe detyrave me funksionalitete si krijimi, listimi dhe vizualizimi i statistikave.
+Aplikacion web për menaxhimin e detyrave dhe stafit, me ndarje të roleve: **admin** dhe **staff**.
 
 ---
 
-## 🔧 Teknologjitë e përdorura
+## ⚙️ Teknologjitë e përdorura
 
-- **Frontend**: React.js
-- **Backend**: Node.js + Express
-- **Database (SQL)**: PostgreSQL (menaxhuar përmes pgAdmin4)
-- **Kontrolli i versioneve**: Git + GitHub
-- **Menaxhimi i projektit**: Trello
-
----
-
-## 📄 Faqet e implementuara
-
-- **Login / Register** – Forma të ndara për kyçje dhe regjistrim përdoruesish
-- **Dashboard** – Vizualizime me Pie Chart dhe Line Chart për ecurinë e detyrave
-- **Tasks** – Krijimi, listimi dhe menaxhimi i detyrave sipas statusit
-- **Staff** – Listë e stafit me pozitat dhe kontaktet përkatëse
+- **Frontend:** React, Vite, Tailwind CSS
+- **Backend:** Node.js + Express
+- **Database:** PostgreSQL (për user & tasks), MongoDB (për njoftime)
+- **Autentifikimi:** JWT (JSON Web Token)
 
 ---
 
-## 🚀 Si të startohet projekti
+## 👥 Roli i përdoruesve
 
-1. **Startimi i frontend-it** (React):
-   - Hap terminalin dhe shko në dosjen `client`
-   - Ekzekuto komandat:
-     ```
-     npm install
-     npm start
-     ```
+- **Admin**
+  - Krijon dhe menaxhon detyra
+  - Krijon përdorues (staf)
+  - Sheh `Dashboard`, `Tasks`, `Staff`
+- **Staff**
+  - Sheh vetëm `My Tasks` që i janë caktuar
 
-2. **Startimi i backend-it** (Node.js + Express):
-   - Hap një terminal të ri dhe shko në dosjen `backend`
-   - Ekzekuto komandat:
-     ```
-     npm install
-     node server.js
-     ```
+---
+
+
+## 🛠️ Si ta nisësh projektin lokalisht
+
+```bash
+# Backend
+cd backend
+npm install
+node server.js
+
+# Frontend
+cd client
+npm install
+npm start
+
+backend/.env.example
+PORT=8000
+DATABASE_URL=postgres://user:password@localhost:5432/mira_db
+MONGO_URI=mongodb://localhost:27017/mira_notifications
+JWT_SECRET=put-a-secure-secret
