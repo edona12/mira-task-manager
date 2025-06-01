@@ -1,35 +1,39 @@
 
+
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require("pg");
-
+const mongoose = require('mongoose');
 
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/tasks');
 const notificationRoutes = require('./routes/notifications');
-const mongoose = require('mongoose');
 const usersRoutes = require('./routes/users'); 
 const staffRoutes = require('./routes/staffRoutes');
-app.use('/api/staff', staffRoutes);
 
 
-require('dotenv').config();
 
+// Lidhja me MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB u lidh me sukses"))
   .catch((err) => console.error("❌ Gabim në lidhje me MongoDB:", err));
 
-const app = express(); 
-app.use('/api/notifications', notificationRoutes);
+// Inicializo Express
+const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// Lidhja e rrugeve (routes)
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
-app.use('/api/users', usersRoutes); 
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/staff', staffRoutes); // ✅ Tani është në vendin e duhur
 
-
-// Lidhja me databazën
+// Lidhja me PostgreSQL
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -48,6 +52,8 @@ app.get("/", async (req, res) => {
   }
 });
 
+
+// Startimi i serverit
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from 'react';
 import {
   BrowserRouter as Router,
@@ -7,7 +8,7 @@ import {
   NavLink,
 } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
+
 import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Staff from './pages/Staff';
@@ -37,11 +38,11 @@ function AppWrapper() {
 
 function AppLayout() {
   const { token } = useContext(AuthContext);
-  const isAuthPage = window.location.pathname === '/login' || window.location.pathname === '/register';
+  const isAuthPage = window.location.pathname === '/login' ;
 
   return (
     <div className="min-h-screen w-full relative">
-      {/* Nav lart në qendër vetëm për login/register */}
+     
       {!token && isAuthPage && (
         <nav
           style={{
@@ -69,26 +70,13 @@ function AppLayout() {
           >
             Login
           </NavLink>
-          <NavLink
-            to="/register"
-            style={({ isActive }) => ({
-              padding: '8px 16px',
-              borderRadius: '10px',
-              fontWeight: '600',
-              textDecoration: 'none',
-              color: isActive ? '#4e54c8' : '#fff',
-              backgroundColor: isActive ? '#fff' : 'transparent',
-              transition: '0.3s',
-            })}
-          >
-            Register
-          </NavLink>
+   
         </nav>
       )}
 
       <Routes>
         <Route path="/login" element={!token ? <LoginForm /> : <Navigate to="/homepage" />} />
-        <Route path="/register" element={!token ? <RegisterForm /> : <Navigate to="/homepage" />} />
+       
         <Route path="/homepage" element={<PrivateRoute><HomePage /></PrivateRoute>}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="mytasks" element={<MyTasks />} />
@@ -103,4 +91,5 @@ function AppLayout() {
 }
 
 export default AppWrapper;
+
 

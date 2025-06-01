@@ -26,13 +26,23 @@ router.get('/export', authenticateToken, async (req, res) => {
 });
 const { requireAdmin } = require('../middleware/roleMiddleware');
 
-router.get('/only-users', requireAdmin, async (req, res) => {
+// router.get('/only-users', requireAdmin, async (req, res) => {
+//   try {
+//     const result = await pool.query("SELECT id, name FROM users WHERE role = 'user'");
+//     res.json(result.rows);
+//   } catch (err) {
+//     console.error("❌ Gabim gjatë marrjes së userëve:", err);
+//     res.status(500).json({ message: 'Gabim gjatë marrjes së stafit' });
+//   }
+// });
+// Merr të gjithë userat me rol 'staff'
+router.get('/staff', async (req, res) => {
   try {
-    const result = await pool.query("SELECT id, name FROM users WHERE role = 'user'");
+    const result = await pool.query("SELECT id, name, email FROM users WHERE role = 'staff' ORDER BY name ASC");
     res.json(result.rows);
-  } catch (err) {
-    console.error("❌ Gabim gjatë marrjes së userëve:", err);
-    res.status(500).json({ message: 'Gabim gjatë marrjes së stafit' });
+  } catch (error) {
+    console.error("Gabim gjatë marrjes së userave me rol staff:", error);
+    res.status(500).json({ message: "Gabim në server." });
   }
 });
 
