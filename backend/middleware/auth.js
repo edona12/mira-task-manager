@@ -11,7 +11,7 @@ function authenticateToken(req, res, next) {
     if (err) return res.status(403).json({ message: 'Token i pavlefshëm' });
 
     req.user = {
-      id: user.userId // ✅ marrim ID-në nga payload-i që ke në JWT
+      id: user.userId 
     };
 
     next();

@@ -48,12 +48,12 @@ const HomePage = () => {
         Menaxhoni detyrat dhe stafin me efikasitet.
       </p>
 
-      <button
+      {/* <button
         onClick={() => navigate('/homepage/dashboard')}
         className="welcome-button"
       >
         📊 Shko te Dashboard
-      </button>
+      </button> */}
 
       <p className="welcome-quote">
         Çdo ditë është një mundësi e re për t’u organizuar më mirë se dje.

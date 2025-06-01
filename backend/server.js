@@ -31,7 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/users', usersRoutes);
-app.use('/api/staff', staffRoutes); // ✅ Tani është në vendin e duhur
+app.use('/api/staff', staffRoutes); 
 
 // Lidhja me PostgreSQL
 const pool = new Pool({

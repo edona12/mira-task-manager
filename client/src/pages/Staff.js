@@ -46,11 +46,10 @@ const Staff = () => {
         setStaff(staff.map((s) => (s.id === staffToEdit.id ? response.data : s)));
         setStaffToEdit(null);
       } else {
-        // const response = await axios.post('/api/staff', payload, config);
-        // setStaff([...staff, response.data]); // sepse response.data = { id, name, email, ... }
+      
 
         await axios.post('/api/staff', payload, config);
-await fetchStaff(); // rifreskon të gjithë stafin nga backend
+await fetchStaff(); 
 
 
       }
@@ -69,7 +68,7 @@ await fetchStaff(); // rifreskon të gjithë stafin nga backend
     setName(member.name);
     setEmail(member.email);
     setPosition(member.position);
-    setPassword(''); // nuk e mbush password-in ekzistues
+    setPassword(''); 
   };
 
   const handleDelete = async (id) => {

@@ -188,24 +188,16 @@ const fetchStaff = async () => {
               <option value="high">E lartë</option>
             </select>
 
-            {/* <select value={assignedTo} onChange={(e) => setAssignedTo(Number(e.target.value))} required>
+
+
+          <select value={assignedTo} onChange={(e) => setAssignedTo(Number(e.target.value))} required>
             <option value="">Zgjedh një punëtor</option>
             {staffList.map((user) => (
               <option key={user.id} value={user.id}>
                 {user.name}
               </option>
             ))}
-          </select> */}
-
-
-          <select value={assignedTo} onChange={(e) => setAssignedTo(Number(e.target.value))} required>
-  <option value="">Zgjedh një punëtor</option>
-  {staffList.map((user) => (
-    <option key={user.id} value={user.id}>
-      {user.name}
-    </option>
-  ))}
-</select>
+          </select>
 
 
             <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} required />
