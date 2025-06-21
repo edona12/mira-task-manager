@@ -39,7 +39,14 @@ npm install
 npm start
 
 backend/.env.example
+
 PORT=8000
-DATABASE_URL=postgres://user:password@localhost:5432/mira_db
-MONGO_URI=mongodb://localhost:27017/mira_notifications
-JWT_SECRET=put-a-secure-secret
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_HOST=localhost
+DB_NAME=mira_task_manager
+DB_PORT=5432
+JWT_SECRET=sekret_i_fortesuar
+
+MONGO_URI=mongodb+srv://edona:Edona123!@cluster0.liigf3k.mongodb.net/miraDB?retryWrites=true&w=majority&appName=Cluster0
+
